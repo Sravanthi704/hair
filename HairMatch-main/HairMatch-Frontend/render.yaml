@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: hairmatch-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://hairmatch-backend-80yg.onrender.com/api
+      - key: VITE_GOOGLE_MAPS_KEY
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
